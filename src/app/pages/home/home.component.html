@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="home-container">
+    <div class="panel">
+      <div class="panel-header">
+        <button
+          nz-button
+          nzType="text"
+          nz-popover
+          [nzPopoverTitle]="currUser.nickname"
+          [nzPopoverContent]="contentTemplate"
+          nzPopoverPlacement="rightTop"
+          nzPopoverTrigger="click"
+        >
+          <nz-avatar nzShape="square" [nzSize]="34" nzIcon="user" [nzSrc]="currUser?.avatarSrc"></nz-avatar>
+        </button>
+      </div>
+      <ng-template #contentTemplate>
+        <div>
+          <p>帐号: {{ currUser.username }}</p>
+          <p>角色: {{ currUser.userRole }}</p>
+        </div>
+      </ng-template>
+
+      <div class="panel-nav">
+        <button nz-button nzType="text" routerLink="/home/chat" routerLinkActive #rla1="routerLinkActive">
+          <div *ngIf="rla1.isActive; else elseMessageIcon">
+            <i nz-icon nzType="message" nzTheme="fill" style="font-size: 20px; color: #07c160;"></i>
+          </div>
+          <ng-template #elseMessageIcon>
+            <i nz-icon nzType="message" nzTheme="outline" style="font-size: 20px; color: #808080;"></i>
+          </ng-template>
+        </button>
+        <button nz-button nzType="text" routerLink="/home/contact" routerLinkActive #rla2="routerLinkActive">
+          <div *ngIf="rla2.isActive; else elseIcon">
+            <i nz-icon nzType="contacts" nzTheme="fill" style="font-size: 20px; color: #07c160;"></i>
+          </div>
+          <ng-template #elseIcon>
+            <i nz-icon nzType="contacts" nzTheme="outline" style="font-size: 20px; color: #808080;"></i>
+          </ng-template>
+        </button>
+      </div>
+
+      <div class="panel-footer">
+        <button
+          nz-button
+          nz-dropdown
+          nzSize="large"
+          nzType="text"
+          [nzDropdownMenu]="menu1"
+          nzPlacement="topLeft"
+          nzTrigger="click"
+        >
+          <i nz-icon nzType="setting" nzTheme="outline"></i>
+        </button>
+        <nz-dropdown-menu #menu1="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)="modifyNickname()">修改昵称</li>
+            <li nz-menu-item (click)="modifyAvatar()">修改头像</li>
+            <li nz-menu-item (click)="modifyPassword()">修改密码</li>
+          </ul>
+        </nz-dropdown-menu>
+
+        <button
+          nz-button
+          nz-dropdown
+          nzSize="large"
+          nzType="text"
+          [nzDropdownMenu]="menu2"
+          nzPlacement="topLeft"
+          nzTrigger="click"
+        >
+          <i nz-icon nzType="logout" nzTheme="outline"></i>
+        </button>
+        <nz-dropdown-menu #menu2="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item routerLink="/passport/welcome">返回主页</li>
+            <li nz-menu-item routerLink="/passport/login">退出登录</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </div>
+
+    <div class="body-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

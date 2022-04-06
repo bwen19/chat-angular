@@ -1,0 +1,125 @@
+.chat-window-header {
+  border-bottom: #d6d6d6 solid 1px;
+  height: 60px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .chat-room-name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  button:hover {
+    background: none;
+  }
+  i {
+    color: #7a7a7a;
+    font-size: 18px;
+
+    &:hover {
+      color: #595959;
+    }
+  }
+}
+
+.chat-messages-container {
+  border-bottom: #d6d6d6 solid 1px;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: hidden;
+  &:hover {
+    overflow-y: scroll;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: #c8c8c8;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    border-radius: 6px;
+    background: #b4b1b0;
+  }
+}
+
+.chat-window-footer {
+  height: 130px;
+  background-color: white;
+
+  .tools-menu {
+    height: 36px;
+    padding-left: 20px;
+    align-items: center;
+
+    [nz-button]:hover {
+      background: none;
+    }
+    [nz-icon] {
+      color: #7a7a7a;
+      font-size: 18px;
+
+      &:hover {
+        color: #595959;
+      }
+    }
+  }
+  .input-area {
+    height: 60px;
+
+    [nz-input] {
+      width: 100%;
+      height: 60px;
+      resize: none;
+      padding: 0px 25px;
+      font-size: 14px;
+      line-height: 20px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 6px;
+        background: #c8c8c8;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        border-radius: 6px;
+        background: #b4b1b0;
+      }
+    }
+  }
+  .send-button {
+    height: 34px;
+    text-align: right;
+    align-items: center;
+    padding-right: 30px;
+
+    [nz-button] {
+      height: 27px;
+      width: 66px;
+      padding: 0px;
+      line-height: 18px;
+      font-size: 14px;
+      background-color: #f5f5f5;
+
+      &:hover {
+        background-color: #129611;
+      }
+    }
+  }
+}
+
+.chat-coffee {
+  height: 550px;
+  background-color: #f5f5f5;
+  text-align: center;
+  line-height: 500px;
+  i {
+    color: #e6e6e6;
+    font-size: 50px;
+  }
+}

@@ -1,0 +1,26 @@
+<div>
+  <form nz-form [formGroup]="validateForm">
+    <nz-form-item>
+      <nz-form-label nzSpan="6">旧昵称</nz-form-label>
+      <nz-form-control nzSpan="16">
+        <input nz-input [placeholder]="nickname" [disabled]="true" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzSpan="6" nzRequired>新昵称</nz-form-label>
+      <nz-form-control nzSpan="16" [nzErrorTip]="errorTpl">
+        <input nz-input formControlName="nickname" placeholder="张三" />
+        <ng-template #errorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">请输入昵称</ng-container>
+          <ng-container *ngIf="control.hasError('repeat')">昵称与以前相同</ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+<div *nzModalFooter>
+  <button nz-button (click)="destroyModal()">取消</button>
+  <button nz-button nzType="primary" (click)="updateNickname()" [nzLoading]="isOkLoading">
+    提交
+  </button>
+</div>

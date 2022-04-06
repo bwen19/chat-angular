@@ -1,0 +1,11 @@
+<div class="welcome-wrap">
+  <nz-result>
+    <i nz-result-icon nz-icon nzType="smile" nzTheme="twotone"></i>
+    <div nz-result-title>欢迎您, {{ username }}</div>
+    <div nz-result-extra>
+      <button nz-button nzType="primary" routerLink="/home">开始聊天</button>
+      <button nz-button routerLink="/passport/login">注销</button>
+      <button nz-button *ngIf="isAdmin" nzType="primary" routerLink="/admin">管理</button>
+    </div>
+  </nz-result>
+</div>

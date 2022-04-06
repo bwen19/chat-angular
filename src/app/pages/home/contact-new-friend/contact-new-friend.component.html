@@ -1,0 +1,90 @@
+<div class="new-friend-header">
+  新的朋友
+</div>
+<div class="new-friend-container">
+  <div class="new-friend-request">
+    <div class="header">
+      发起请求
+    </div>
+    <nz-input-group [nzPrefix]="prefixIconSearch" [nzAddOnAfter]="suffixButton" nzSearch>
+      <input
+        nz-input
+        nzSize="small"
+        type="text"
+        [(ngModel)]="searchName"
+        (keyup.enter)="onSearchUser()"
+        placeholder="用户名"
+      />
+    </nz-input-group>
+    <ng-template #prefixIconSearch>
+      <i nz-icon class="search-icon" nzType="search"></i>
+    </ng-template>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" (click)="onSearchUser()">搜索</button>
+    </ng-template>
+
+    <div class="search-result">
+      <nz-card *ngIf="searchedUser; else searchEmptyTpl">
+        <nz-card-meta
+          [nzTitle]="searchedUser.nickname"
+          [nzDescription]="searchedUser.username"
+          [nzAvatar]="avatarTemplate"
+        ></nz-card-meta>
+        <div class="request-friend">
+          <div *ngIf="!searchStatus; else elseBlock">
+            <button nz-button nzType="primary" [nzLoading]="isReqLoading" (click)="onRequestFriend(searchedUser.id)">
+              请求添加好友
+            </button>
+          </div>
+        </div>
+        <ng-template #elseBlock>
+          <div>{{ searchStatus }}</div>
+        </ng-template>
+      </nz-card>
+      <ng-template #avatarTemplate>
+        <nz-avatar [nzSrc]="searchedUser?.avatarSrc" nzShape="square" [nzSize]="50"></nz-avatar>
+      </ng-template>
+
+      <ng-template #searchEmptyTpl>
+        <nz-empty nzNotFoundImage="simple"></nz-empty>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="new-friend-receive">
+    <div class="header">
+      收到请求
+    </div>
+    <nz-list *ngIf="requestedFriends$; else receiveEmptyTpl">
+      <nz-list-item *ngFor="let friend of requestedFriends$ | async">
+        <nz-list-item-meta [nzAvatar]="friend.user.avatarSrc">
+          <nz-list-item-meta-title>
+            {{ friend.user.username }}
+          </nz-list-item-meta-title>
+          <nz-list-item-meta-description>
+            {{ friend.user.nickname }}
+          </nz-list-item-meta-description>
+        </nz-list-item-meta>
+        <nz-button-group>
+          <button nz-button nzType="primary" (click)="onAcceptFriend(friend.id)">
+            <i nz-icon nzType="plus"></i>
+          </button>
+          <button
+            nz-button
+            nzType="primary"
+            nzDanger
+            nz-popconfirm
+            nzPopconfirmTitle="确定删除?"
+            nzPopconfirmPlacement="topRight"
+            (nzOnConfirm)="onDeclineFriend(friend.id)"
+          >
+            <i nz-icon nzType="delete"></i>
+          </button>
+        </nz-button-group>
+      </nz-list-item>
+    </nz-list>
+    <ng-template #receiveEmptyTpl>
+      <nz-empty nzNotFoundImage="simple"></nz-empty>
+    </ng-template>
+  </div>
+</div>

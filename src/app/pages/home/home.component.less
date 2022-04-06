@@ -1,0 +1,71 @@
+.container {
+  height: 100%;
+  min-height: 600px;
+  min-width: 820px;
+  background: url('../../../assets/img/bg2.jpeg') no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-container {
+  width: 820px;
+  height: 550px;
+  display: flex;
+}
+
+.panel {
+  width: 60px;
+  height: 100%;
+  background-color: #2e2e2e;
+  border-radius: 2px 0 0 2px;
+  text-align: center;
+  position: relative;
+
+  .panel-header {
+    height: 72px;
+    padding-top: 20px;
+    [nz-button] {
+      width: 36px;
+      height: 36px;
+      padding: 0px;
+    }
+  }
+
+  .panel-nav {
+    [nz-button] {
+      width: 34px;
+      height: 34px;
+      padding: 0px;
+      margin-bottom: 12px;
+    }
+  }
+
+  .panel-footer {
+    position: absolute;
+    padding-bottom: 10px;
+    bottom: 0px;
+    [nz-button] {
+      width: 36px;
+      height: 36px;
+      margin: 4px 0;
+      color: #808080;
+      i {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+::ng-deep .ant-dropdown-menu {
+  background-color: #495371;
+  .ant-dropdown-menu-item {
+    color: #ecb365;
+  }
+}
+
+.body-container {
+  flex: 1;
+  height: 100%;
+}

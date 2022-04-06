@@ -1,0 +1,30 @@
+<div class="container">
+  <div [ngClass]="isSelf ? 'right' : 'left'">
+    <nz-avatar
+      class="avatar"
+      nzShape="square"
+      nzIcon="user"
+      [nzSrc]="sender.avatarSrc"
+      nz-popover
+      [nzPopoverContent]="contentTemplate"
+      [nzPopoverPlacement]="isSelf ? 'topRight' : 'topLeft'"
+      [nzPopoverTrigger]="isSelf ? null : 'click'"
+    ></nz-avatar>
+    <ng-template #contentTemplate>
+      <div>
+        <span>{{ sender.nickname }}</span>
+        <button nz-button nzType="link" (click)="onClickButton()">
+          <i nz-icon *ngIf="isFriend; else addFriendIcon" nzType="message"></i>
+        </button>
+        <ng-template #addFriendIcon><i nz-icon nzType="user-add"></i></ng-template>
+      </div>
+    </ng-template>
+    <div class="message-container">
+      <div class="message-info">
+        <p class="message-sender">{{ sender.nickname }}</p>
+        <p class="message-time">{{ message.sendTime | customTime: 'long' }}</p>
+      </div>
+      <p class="message-content">{{ message.content }}</p>
+    </div>
+  </div>
+</div>

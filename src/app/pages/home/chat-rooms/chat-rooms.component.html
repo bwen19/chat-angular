@@ -1,0 +1,41 @@
+<div class="chat-rooms-container">
+  <div class="chat-rooms-header">
+    <app-search-box (itemEvent)="setCurrRoomId($event)" [candidates]="orderedRooms$"></app-search-box>
+    <app-create-room></app-create-room>
+  </div>
+
+  <div class="room-list">
+    <nz-list nzSplit="false">
+      <nz-list-item
+        *ngFor="let room of orderedRooms$ | async"
+        [class.active]="currRoomId === room.id"
+        (click)="setCurrRoomId(room.id)"
+      >
+        <nz-badge [nzDot]="room.hasNew">
+          <nz-avatar
+            [ngClass]="room.className"
+            nzShape="square"
+            [nzSize]="40"
+            [nzIcon]="room.icon"
+            [nzSrc]="room.avatarSrc"
+          ></nz-avatar>
+        </nz-badge>
+        <div class="room-info-container">
+          <div class="room-info-top">
+            <div class="room-name">
+              {{ room.name }}
+            </div>
+            <div class="room-message-time">
+              <p *ngIf="room.lastMessage">
+                {{ room.lastMessage.sendTime | customTime: 'small' }}
+              </p>
+            </div>
+          </div>
+          <div class="room-info-bottom">
+            <p *ngIf="room.lastMessage">{{ room.lastMessage.sender.nickname }}:{{ room.lastMessage.content }}</p>
+          </div>
+        </div>
+      </nz-list-item>
+    </nz-list>
+  </div>
+</div>

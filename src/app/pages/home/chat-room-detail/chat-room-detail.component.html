@@ -1,0 +1,149 @@
+<div class="room-detail-container">
+  <div *ngIf="roomType === 'single'">
+    <div class="room-info">
+      <nz-avatar class="avatar-single" nzShape="square" [nzSize]="50" nzIcon="android"></nz-avatar>
+      <p>{{ roomName }}</p>
+    </div>
+    <div class="room-info">
+      <div class="title">功能介绍</div>
+      <div class="content">单人房间, 用于测试, 可以在手机与电脑间传输信息.</div>
+    </div>
+  </div>
+
+  <div *ngIf="roomType === 'friend'">
+    <div class="room-members-container">
+      <div nz-row class="room-members">
+        <div nz-col class="member-info" [nzSpan]="3" *ngFor="let member of members$ | async">
+          <nz-avatar class="member-avatar" nzShape="square" [nzSize]="50" [nzSrc]="member.avatarSrc"></nz-avatar>
+          <p class="member-name">{{ member.nickname }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="room-info">
+      <div class="title">介绍</div>
+      <div class="content">好友私聊房间</div>
+    </div>
+    <div *ngIf="memberNum === 1; else frienRoomAction" class="room-action">
+      <button nz-button nzType="primary" [disabled]="disableAddFriend" (click)="onRequestFriendFromRoom()">
+        {{ disableAddFriend ? '待确认' : '添加好友' }}
+      </button>
+      <button
+        nz-button
+        nzType="primary"
+        nzDanger
+        nz-popconfirm
+        nzPopconfirmTitle="聊天记录将全部丢失, 确定删除?"
+        nzPopconfirmPlacement="top"
+        (nzOnConfirm)="onRemoveFriendFromRoom()"
+      >
+        删除房间
+      </button>
+    </div>
+    <ng-template #frienRoomAction>
+      <div class="room-action">
+        <button
+          nz-button
+          nzType="primary"
+          nzDanger
+          nz-popconfirm
+          nzPopconfirmTitle="聊天记录将全部丢失, 确定删除?"
+          nzPopconfirmPlacement="top"
+          (nzOnConfirm)="onRemoveFriendFromRoom()"
+        >
+          删除好友
+        </button>
+      </div>
+    </ng-template>
+  </div>
+
+  <div *ngIf="roomType === 'public'">
+    <div class="room-members-container">
+      <div nz-row class="room-members">
+        <div nz-col [nzSpan]="3" class="member-info">
+          <button nz-button nzType="dashed" class="plus-button" (click)="onAddRoomMembers(tplContent)">
+            <i nz-icon nzType="plus"></i>
+          </button>
+        </div>
+        <div *ngIf="isOwner" nz-col [nzSpan]="3" class="member-info">
+          <button nz-button nzType="dashed" class="plus-button" (click)="onDeleteRoomMembers(tplContent)">
+            <i nz-icon nzType="minus"></i>
+          </button>
+        </div>
+        <ng-template #tplContent>
+          <nz-transfer
+            [nzDataSource]="list"
+            [nzTitles]="titles"
+            [nzListStyle]="{ 'height.px': 250 }"
+            [nzRender]="render"
+          ></nz-transfer>
+          <ng-template #render let-item>
+            <nz-avatar nzShape="square" nzIcon="user" [nzSize]="30" [nzSrc]="item.avatarSrc"></nz-avatar>
+            <span class="transfer-title">{{ item.title }}</span>
+          </ng-template>
+        </ng-template>
+
+        <div nz-col class="member-info" [nzSpan]="3" *ngFor="let member of members$ | async">
+          <nz-avatar class="member-avatar" nzShape="square" [nzSize]="50" [nzSrc]="member.avatarSrc"></nz-avatar>
+          <p class="member-name">{{ member.nickname }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="room-info">
+      <nz-avatar class="avatar-team" nzShape="square" [nzSize]="50" nzIcon="team"></nz-avatar>
+      <p
+        *ngIf="isOwner; else publicRoomName"
+        nz-typography
+        nzEditable
+        [nzEditTooltip]="null"
+        [(nzContent)]="roomName"
+        (nzContentChange)="onUpdateRoomName()"
+      ></p>
+      <ng-template #publicRoomName>
+        <p>{{ roomName }}</p>
+      </ng-template>
+    </div>
+    <div class="room-info">
+      <div class="title">公告</div>
+      <p
+        class="content"
+        *ngIf="isOwner; else publicRoomNotice"
+        nz-typography
+        nzEditable
+        [nzEditTooltip]="null"
+        [(nzContent)]="notice"
+        (nzContentChange)="onUpdateRoomNotice()"
+      ></p>
+      <ng-template #publicRoomNotice>
+        <p class="content">{{ notice }}</p>
+      </ng-template>
+    </div>
+    <div *ngIf="isOwner; else publicRoomAction" class="room-action">
+      <button
+        nz-button
+        nzType="primary"
+        nzDanger
+        nz-popconfirm
+        nzPopconfirmTitle="聊天记录将全部丢失, 确定删除?"
+        nzPopconfirmPlacement="top"
+        (nzOnConfirm)="onRemoveRoom()"
+      >
+        解散房间
+      </button>
+    </div>
+    <ng-template #publicRoomAction>
+      <div class="room-action">
+        <button
+          nz-button
+          nzType="primary"
+          nzDanger
+          nz-popconfirm
+          nzPopconfirmTitle="确定删除此房间?"
+          nzPopconfirmPlacement="top"
+          (nzOnConfirm)="onLeaveRoom()"
+        >
+          离开房间
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</div>

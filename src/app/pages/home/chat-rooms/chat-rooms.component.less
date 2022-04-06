@@ -1,0 +1,105 @@
+.chat-rooms-container {
+  border-right: #d6d6d6 solid 1.5px;
+}
+
+.chat-rooms-header {
+  height: 60px;
+  background-color: #f7f7f7;
+  padding: 24px 12px 0px 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.room-list {
+  height: 490px;
+  background-color: #e6e6e6;
+  overflow-y: hidden;
+
+  &:hover {
+    overflow-y: scroll;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: #c8c8c8;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    border-radius: 6px;
+    background: #b4b1b0;
+  }
+
+  nz-list-item {
+    width: 242.5px;
+    height: 60px;
+    color: #898989;
+  }
+  nz-list-item:hover {
+    background: #d5d4d4;
+  }
+  nz-list-item.active {
+    background-color: #c5c5c5;
+  }
+  &:hover {
+    cursor: default;
+  }
+
+  nz-avatar {
+    margin-left: 10px;
+  }
+  .avatar-single {
+    background-color: #495371;
+    color: #17d7a0;
+  }
+  .avatar-friend {
+    background-color: #ffa500;
+    color: white;
+  }
+  .avatar-public {
+    background-color: #3d84b8;
+    color: #f7fd04;
+  }
+}
+
+.room-info-container {
+  width: 180px;
+  height: 100%;
+
+  .room-info-top {
+    width: 100%;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    .room-name {
+      width: 120px;
+      line-height: 15px;
+      font-size: 15px;
+      color: black;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .room-message-time {
+      width: 60px;
+      line-height: 15px;
+      padding-right: 5px;
+      p {
+        font-size: 13px;
+        text-align: right;
+      }
+    }
+  }
+  .room-info-bottom {
+    width: 100%;
+    height: 18px;
+    padding-right: 10px;
+    p {
+      line-height: 18px;
+      font-size: 13px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

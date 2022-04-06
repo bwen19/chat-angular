@@ -1,0 +1,27 @@
+<nz-input-group [nzPrefix]="prefixIconSearch" nzSize="small">
+  <input
+    nz-input
+    type="text"
+    nzBorderless="true"
+    placeholder="搜索"
+    (input)="onInput($event)"
+    (enter)="onEnter()"
+    [(ngModel)]="inputValue"
+    [nzAutocomplete]="auto"
+  />
+</nz-input-group>
+<ng-template #prefixIconSearch>
+  <i nz-icon class="search-icon" nzType="search"></i>
+</ng-template>
+<nz-autocomplete #auto>
+  <nz-auto-option *ngFor="let option of options" [nzValue]="option.name" (click)="onEnter()">
+    <nz-avatar
+      [ngClass]="option.className"
+      nzShape="square"
+      [nzSize]="25"
+      [nzIcon]="option.icon"
+      [nzSrc]="option.avatarSrc"
+    ></nz-avatar>
+    <span class="option-name">{{ option.name }}</span>
+  </nz-auto-option>
+</nz-autocomplete>

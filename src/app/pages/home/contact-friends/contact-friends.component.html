@@ -1,0 +1,35 @@
+<div class="contact-friends-container">
+  <div class="contact-friends-header">
+    <app-search-box (itemEvent)="setCurrFriendId($event)" [candidates]="acceptedFriends$"></app-search-box>
+    <app-create-room></app-create-room>
+  </div>
+
+  <div class="contact-friend-list">
+    <nz-list nzSplit="false">
+      <nz-list-item [class.active]="currFriendId === 'newFriend'" (click)="setCurrFriendId('newFriend')">
+        <div class="badge-new-friend">
+          <nz-badge [nzDot]="hasNew">
+            <nz-avatar nzShape="square" nzIcon="user"></nz-avatar>
+          </nz-badge>
+        </div>
+        <div class="contact-friend-name">
+          新的朋友
+        </div>
+      </nz-list-item>
+      <div class="contact-divider">
+        <nz-divider></nz-divider>
+        好友列表
+      </div>
+      <nz-list-item
+        *ngFor="let friend of acceptedFriends$ | async"
+        [class.active]="currFriendId === friend.id"
+        (click)="setCurrFriendId(friend.id)"
+      >
+        <nz-avatar class="avatar" nzShape="square" nzIcon="user" [nzSrc]="friend.avatarSrc"></nz-avatar>
+        <div class="contact-friend-name">
+          {{ friend.name }}
+        </div>
+      </nz-list-item>
+    </nz-list>
+  </div>
+</div>

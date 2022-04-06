@@ -1,0 +1,88 @@
+.contact-friends-container {
+  border-right: #d6d6d6 solid 1.5px;
+}
+
+.contact-friends-header {
+  height: 60px;
+  background-color: #f7f7f7;
+  padding: 24px 12px 0px 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-new-friends {
+  width: 248.5px;
+  height: 80px;
+  background-color: #f7f7f7;
+}
+
+.contact-friend-list {
+  height: 490px;
+  background-color: #e6e6e6;
+  overflow-y: hidden;
+  &:hover {
+    overflow-y: scroll;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: #c8c8c8;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    border-radius: 6px;
+    background: #b4b1b0;
+  }
+  &:hover {
+    cursor: default;
+  }
+
+  nz-list-item {
+    width: 242.5px;
+    height: 52px;
+    color: #898989;
+    justify-content: flex-start;
+  }
+  nz-list-item:hover {
+    background: #d5d4d4;
+  }
+  nz-list-item.active {
+    background-color: #c5c5c5;
+  }
+
+  .badge-new-friend {
+    margin: 0 10px 0 10px;
+    nz-avatar {
+      height: 32px;
+      width: 32px;
+      background-size: 100%;
+      background-color: #ffa500;
+    }
+  }
+
+  .avatar {
+    margin: 0 10px 0 10px;
+    height: 32px;
+    width: 32px;
+    background-size: 100%;
+  }
+  .contact-friend-name {
+    width: 180px;
+    height: 100%;
+    color: black;
+    line-height: 28px;
+    font-size: 14px;
+  }
+
+  .contact-divider {
+    width: 230px;
+    margin-left: 10px;
+    color: #898989;
+    font-size: 12px;
+
+    nz-divider {
+      margin: 0 0 15px;
+    }
+  }
+}

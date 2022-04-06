@@ -18,7 +18,9 @@
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
+    "ng-zorro-antd": "^13.0.1",
     "rxjs": "~7.4.0",
+    "socket.io-client": "^4.4.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

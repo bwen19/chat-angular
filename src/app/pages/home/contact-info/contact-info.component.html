@@ -1,0 +1,48 @@
+<div class="container">
+  <div *ngIf="currFriendId === 'newFriend'">
+    <app-contact-new-friend></app-contact-new-friend>
+  </div>
+  <div *ngIf="currFriend && currFriendId === currFriend.id">
+    <div class="friend-info-container">
+      <nz-card nzBorderless [nzCover]="coverTemplate" [nzActions]="[chatWith, removeFriend]">
+        <nz-card-meta
+          [nzTitle]="currFriend.user.username"
+          [nzDescription]="descriptionTemplate"
+          [nzAvatar]="avatarTemplate"
+        ></nz-card-meta>
+        <div class="request-friend"></div>
+        <ng-template #coverTemplate>
+          <img src="./assets/img/user-bg-1.png" />
+        </ng-template>
+        <ng-template #extraTemplate>
+          extra
+        </ng-template>
+        <ng-template #chatWith>
+          <button nz-button nzType="link" (click)="onChatWith()"><i nz-icon nzType="message"></i></button>
+        </ng-template>
+        <ng-template #removeFriend>
+          <button
+            nz-button
+            nzType="link"
+            nzDanger
+            nz-popconfirm
+            nzPopconfirmTitle="确定删除?"
+            nzPopconfirmPlacement="top"
+            (nzOnConfirm)="onRemoveFriend()"
+          >
+            <i nz-icon nzType="delete"></i>
+          </button>
+        </ng-template>
+        <ng-template #descriptionTemplate> 昵称: {{ currFriend.user.nickname }} </ng-template>
+        <ng-template #avatarTemplate>
+          <nz-avatar [nzSrc]="currFriend.user.avatarSrc" nzShape="square"></nz-avatar>
+        </ng-template>
+      </nz-card>
+    </div>
+  </div>
+  <div *ngIf="!currFriendId && !currFriend">
+    <div class="chat-coffee">
+      <i nz-icon nzType="coffee" nzTheme="outline"></i>
+    </div>
+  </div>
+</div>

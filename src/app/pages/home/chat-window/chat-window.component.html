@@ -1,0 +1,62 @@
+<div class="container">
+  <div *ngIf="currRoomId; else coffeBlock">
+    <div *ngIf="showDetail; else chatBoxBlock">
+      <div class="chat-window-header">
+        <button nz-button nzType="text" (click)="onShowChatBox()">
+          <i nz-icon nzType="rollback" nzTheme="outline"></i>
+        </button>
+        <div class="chat-room-name">
+          房间详情
+        </div>
+      </div>
+      <app-chat-room-detail [currRoom$]="currRoom$"></app-chat-room-detail>
+    </div>
+
+    <ng-template #chatBoxBlock>
+      <div class="chat-window-header">
+        <div class="chat-room-name">
+          <span>{{ currRoomName }}</span>
+          <span *ngIf="publicMemberNum > 0">({{ publicMemberNum }})</span>
+        </div>
+        <button nz-button nzType="text" (click)="showDetail = true">
+          <i nz-icon nzType="ellipsis" nzTheme="outline"></i>
+        </button>
+      </div>
+      <div class="chat-messages-container">
+        <app-chat-messages
+          class="messages"
+          *ngFor="let message of messages$ | async"
+          [message]="message"
+        ></app-chat-messages>
+      </div>
+
+      <div class="chat-window-footer">
+        <div class="tools-menu">
+          <button nz-button nzType="text">
+            <i nz-icon nzType="smile" nzTheme="outline"></i>
+          </button>
+          <button nz-button nzType="text">
+            <i nz-icon nzType="folder" nzTheme="outline"></i>
+          </button>
+        </div>
+        <div class="input-area">
+          <textarea
+            nz-input
+            [(ngModel)]="messageContent"
+            nzBorderless
+            (keyup.control.enter)="onSendMessage()"
+          ></textarea>
+        </div>
+        <div class="send-button">
+          <button nz-button nzType="default" (click)="onSendMessage()">发送</button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <ng-template #coffeBlock>
+    <div class="chat-coffee">
+      <i nz-icon nzType="coffee" nzTheme="outline"></i>
+    </div>
+  </ng-template>
+</div>

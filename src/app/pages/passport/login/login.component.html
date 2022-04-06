@@ -1,0 +1,42 @@
+<div class="login-form-wrap">
+  <div class="login-header">
+    登录
+  </div>
+  <form nz-form class="login-form" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="请输入用户名!">
+        <nz-input-group nzPrefixIcon="user">
+          <input nz-input formControlName="username" placeholder="请输入用户名" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="请输入密码!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input nz-input type="password" autocomplete="off" formControlName="password" placeholder="请输入密码" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row class="login-form-margin">
+      <div nz-col [nzSpan]="12">
+        <label nz-checkbox class="login-form-remember" formControlName="remember">
+          <span>记住用户名</span>
+        </label>
+      </div>
+    </div>
+
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">
+      登录
+    </button>
+    <div nz-row class="login-form-margin">
+      <div nz-col [nzSpan]="12">
+        <a class="register-link" routerLink="/passport/register">注册账号</a>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <button nz-button class="reset-button" type="reset" nzType="text" nzSize="small">重置</button>
+      </div>
+    </div>
+  </form>
+</div>

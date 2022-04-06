@@ -1,0 +1,100 @@
+.room-detail-container {
+  background-color: #f5f5f5;
+  height: 490px;
+}
+
+.room-info {
+  background-color: white;
+  height: 80px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 400;
+
+  nz-avatar {
+    margin: 0 25px;
+  }
+  p {
+    margin-bottom: 0;
+    max-width: 400px;
+  }
+  .title {
+    width: 60px;
+    margin: 0 20px;
+    text-align: center;
+  }
+  .content {
+    color: #898989;
+  }
+  .avatar-single {
+    background-color: #495371;
+    color: #17d7a0;
+  }
+  .avatar-team {
+    background-color: #3d84b8;
+    color: #f7fd04;
+  }
+}
+
+.room-members-container {
+  background-color: white;
+  max-height: 216px;
+  margin-bottom: 8px;
+  overflow-y: hidden;
+
+  &:hover {
+    overflow-y: scroll;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: #c8c8c8;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    border-radius: 6px;
+    background: #b4b1b0;
+  }
+
+  .plus-button {
+    width: 50px;
+    height: 50px;
+    i {
+      font-size: 24px;
+      color: #898989;
+    }
+  }
+  .room-members {
+    width: 502px;
+    padding-left: 6px;
+  }
+  .member-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 0;
+  }
+  .member-name {
+    margin-bottom: 0;
+  }
+}
+
+.transfer-title {
+  margin-left: 8px;
+  display: inline-block;
+  width: 90px;
+}
+
+.room-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  margin-top: 8px;
+  height: 60px;
+  button {
+    margin-left: 15px;
+  }
+}

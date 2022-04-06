@@ -1,0 +1,89 @@
+.new-friend-header {
+  border-bottom: #e7e7e7 solid 1px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 25px;
+}
+
+.new-friend-container {
+  height: 490px;
+  display: flex;
+}
+
+.new-friend-request {
+  width: 250px;
+  border-right: #e7e7e7 solid 1px;
+  text-align: center;
+
+  nz-input-group {
+    width: 220px;
+    margin: 20px 0;
+  }
+
+  .search-result {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    nz-card {
+      width: 200px;
+    }
+    .request-friend {
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      font-size: 14px;
+      color: #898989;
+    }
+  }
+}
+
+.header {
+  width: 250px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #898989;
+}
+
+.new-friend-receive nz-list {
+  width: 260px;
+  overflow-y: hidden;
+  &:hover {
+    overflow-y: scroll;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: #c8c8c8;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    border-radius: 6px;
+    background: #b4b1b0;
+  }
+
+  nz-list-item {
+    width: 240px;
+    margin-left: 10px;
+    padding-left: 8px;
+    background-color: white;
+
+    nz-button-group {
+      margin-left: 5px;
+    }
+    nz-button-group button {
+      height: 22px;
+      margin-right: 5px;
+    }
+    nz-list-item-meta-description {
+      word-break: break-all;
+      width: 50px;
+    }
+  }
+}
